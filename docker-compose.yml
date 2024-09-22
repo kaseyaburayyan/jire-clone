@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  web:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - main
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8080
+  backend:
+    build: ./backend/tasktracker
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/tasktracker:/app
+    networks:
+      - main
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tasktracker
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      CHOKIDAR_USEPOLLING: true
+    depends_on:
+      - db
+  db:
+    image: postgres
+    networks:
+      - main
+    environment:
+      POSTGRES_DB: tasktracker
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5400:5432"
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+
+volumes:
+  postgres_volume:
+
+
+networks:
+  main:
+    driver: bridge

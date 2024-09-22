@@ -1,0 +1,28 @@
+# all node module folders in all directories
+node_modules/
+*/node_modules/
+# all target folders in all directories
+target/
+*/target/
+
+vcs.xml
+.idea/*
+
+.DS_Store
+*/.DS_Store
+*/.idea/
+*/.gradle/
+*/.settings/
+*/.classpath
+*/.project
+*/.factorypath
+*/.metadata/
+*/.recommenders/
+*/.cache/
+*/.history/
+*/.externalToolBuilders/
+*/.git/
+*/.svn/
+*/.hg/
+*/.bzr/
+*/.vagrant
