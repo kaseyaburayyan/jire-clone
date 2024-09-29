@@ -1,15 +1,13 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk
+FROM maven:3.8.6-openjdk-18
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy only the pom.xml and install dependencies first (this step is cached in Docker)
 COPY pom.xml ./
-COPY mvnw ./
 COPY .mvn ./.mvn
-RUN sed -i 's/\r$//' mvnw
-RUN ./mvnw dependency:go-offline
+
+RUN mvn dependency:go-offline
 
 # Copy the source code
 COPY src ./src
@@ -18,4 +16,4 @@ COPY src ./src
 EXPOSE 8080
 
 # Run the Spring Boot application with DevTools enabled
-CMD ["./mvnw", "clean", "spring-boot:run"]
+CMD ["mvn", "clean", "spring-boot:run"]
