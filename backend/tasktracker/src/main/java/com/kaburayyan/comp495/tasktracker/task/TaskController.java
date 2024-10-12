@@ -34,12 +34,14 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
     
+    @RequestMapping(path = "/task", method = RequestMethod.GET)
     public ResponseEntity<Task> getTask(@PathVariable UUID id) {
         Optional<Task> task = taskService.getTaskById(id);
         return task.map(ResponseEntity::ok)
                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @RequestMapping(path = "/task", method = RequestMethod.PUT)
     public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody Task task) {
         if (task.getTaskTitle() == null || task.getTaskDesc() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -53,6 +55,7 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @RequestMapping(path = "/task", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteTask(@PathVariable UUID id) {
         if (taskService.deleteTask(id)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
