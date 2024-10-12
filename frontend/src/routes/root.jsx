@@ -1,4 +1,4 @@
-import {Outlet, Link} from "../node_modules/react-router-dom";
+import {Outlet, Link} from "react-router-dom";
 import '../navbar.css';
 
 export default function Root() {
