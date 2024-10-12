@@ -1,0 +1,10 @@
+#navbar {
+    height: 100%;
+    background-color: darkgrey;
+}
+
+li {
+    display: inline;
+    padding-right: 5%;
+    font-size: medium;
+}
