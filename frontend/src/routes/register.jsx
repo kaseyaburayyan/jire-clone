@@ -16,11 +16,11 @@ export default function Register(){
         <h1>Registration</h1>
         <form>
             <label>Email: </label>
-            <input type="email" id="email"/><br></br>
+            <input type="email" id="email" required/><br></br>
             <label>Username: </label>
-            <input type="text" id="username"/><br></br>
+            <input type="text" id="username" required/><br></br>
             <label>Password: </label>
-            <input type="password" id="password"/><br></br>
+            <input type="password" id="password" required/><br></br>
             <button type="submit" onClick={register}>Register</button>
         </form>
     </div>
