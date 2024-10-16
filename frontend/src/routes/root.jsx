@@ -7,7 +7,7 @@ export default function Root() {
         Currently displays as a barebones topbar*/
         <>
             <div id="navbar">
-                <h1>Navbar</h1>
+                <h2>Navbar</h2>
                 <nav>
                     <ul>
                         <li>
@@ -15,6 +15,9 @@ export default function Root() {
                         </li>
                         <li>
                             <Link to={`/register`}>Register</Link>
+                        </li>
+                        <li>
+                            <Link to={`/createTask`}>Create Task</Link>
                         </li>
                     </ul>
                 </nav>

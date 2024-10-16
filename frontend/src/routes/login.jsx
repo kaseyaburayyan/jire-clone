@@ -13,9 +13,9 @@ export default function Login() {
             <h1>Login Page!</h1>
             <form> 
                 <label>Username: </label>
-                <input type="text" id="username" name="username" /><br></br>
+                <input type="text" id="username" name="username" required/><br></br>
                 <label>Password: </label>
-                <input type="password" id="password" name="password" /><br></br>
+                <input type="password" id="password" name="password" required/><br></br>
                 <button type="submit" onClick={login}>Log in</button>
 
             </form>
