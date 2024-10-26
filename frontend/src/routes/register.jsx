@@ -1,3 +1,6 @@
+import {API_URL} from "../constants";
+import { Navigate } from "react-router-dom";
+
 export default function Register(){
     function register(){
         var username=document.getElementById("username").value;
@@ -8,6 +11,29 @@ export default function Register(){
         console.log("Email: ", email);
         console.log("Username: ", username);
         console.log("Password: ", password);
+
+        const registerApi = `${API_URL}/user`;
+        const user = {
+          username: username,
+          password: password,
+          email: email
+        }
+        fetch(registerApi, {
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {"Content-Type": "application/json"}
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .then(data => {
+          alert("User registered successfully");
+          <Navigate to="/login" />
+        })
+        .catch(error => {
+          alert("Error registering user");
+          alert(error);
+        })
     }   
 
     return(

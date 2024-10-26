@@ -1,5 +1,6 @@
 package com.kaburayyan.comp495.tasktracker.user;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,5 +51,15 @@ public class UserService {
 
         return user;
         
+    }
+
+    public User getUserByUsername(String username){
+      List<User> users = repository.findAll();
+      for(User user : users){
+        if(user.getUsername().equals(username)){
+          return user;
+        }
+      }
+      return null;
     }
 }

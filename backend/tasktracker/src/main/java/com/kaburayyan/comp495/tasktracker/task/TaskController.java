@@ -1,6 +1,7 @@
 package com.kaburayyan.comp495.tasktracker.task;
-import java.util.UUID;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,12 @@ public class TaskController {
         this.taskService.addTask(task);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
+
+    @RequestMapping(path = "/tasks", method = RequestMethod.GET )
+    public ResponseEntity<List<Task>> getTasks() {
+        List<Task> tasks = taskService.getTasks();
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
     
     @RequestMapping(path = "/task", method = RequestMethod.GET)
     public ResponseEntity<Task> getTask(@PathVariable UUID id) {
@@ -41,7 +48,7 @@ public class TaskController {
                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @RequestMapping(path = "/task", method = RequestMethod.PUT)
+    @RequestMapping(path = "/task/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody Task task) {
         if (task.getTaskTitle() == null || task.getTaskDesc() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

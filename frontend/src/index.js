@@ -7,7 +7,9 @@ import Login from './routes/login';
 import Register from './routes/register';
 import CreateTask from './routes/createTask';
 import reportWebVitals from './reportWebVitals';
-
+import { AuthProvider } from './auth/auth';
+import ListAllTasks from './routes/listAllTasks';
+import MyTasks from './routes/myTasks';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "createTask",
         element: <CreateTask />
+      },
+      {
+        path: "listAllTasks",
+        element: <ListAllTasks />
+      },
+      {
+        path: "myTasks",
+        element: <MyTasks />
       }
     ]
   },
@@ -33,7 +43,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
 

@@ -1,9 +1,10 @@
 package com.kaburayyan.comp495.tasktracker.task;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 @Service
 public class TaskService {
     private final TaskRepository repository;
@@ -31,5 +32,9 @@ public class TaskService {
             return true;
         }
         return false;
+    }
+
+    public List<Task> getTasks() {
+        return this.repository.findAll();
     }
 }

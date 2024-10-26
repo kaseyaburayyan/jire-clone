@@ -1,14 +1,11 @@
 package com.kaburayyan.comp495.tasktracker.task;
 
-import jakarta.persistence.Entity;
-
 import java.util.Date;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-import javax.annotation.processing.Generated;
 
 @Entity
 public class Task {

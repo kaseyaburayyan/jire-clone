@@ -25,6 +25,26 @@ public class UserController {
         this.userService = userService;
     }
 
+    @RequestMapping(path = "/user/login", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, Object> credentials){
+        String username = (String) credentials.get("username");
+        String password = (String) credentials.get("password");
+
+        User user = this.userService.getUserByUsername(username);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if(!user.getPassword().equals(password)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", user.getId());
+        response.put("username", user.getUsername());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> createUser(@RequestBody User user) {
         if (user.getEmail() == null) {
